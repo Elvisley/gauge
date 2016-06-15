@@ -1,0 +1,14 @@
+{
+  "name": "Usuarios Influentes",
+  "description": "Aplicacao destinada a entender melhor oo perfil do usuarios em diferentes setores",
+  "main": "",
+  "authors": [
+    "Elvisley Souza Pereira"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "dependencies": {
+    "angular": "^1.5.6",
+    "angular-morris-chart": "~1.2.0"
+  }
+}

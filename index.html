@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html data-ng-app="appgauge">
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Usuários Influentes</title>
+	 <!-- Bootstrap -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
+	<link href="assets/css/index.css" rel="stylesheet" >
+
+</head>
+<body data-ng-controller="appCtrl">
+	
+	<!-- MENU -->	
+	<nav class="navbar navbar-default navbar-fixed-top">
+	  <div class="container-fluid" style="background:#27ae60 none repeat scroll 0 0">
+		<div class="navbar-header">
+			
+		  <a class="navbar-brand" id="titlenav" href="#">
+			Usuarios influentes
+		  </a>
+
+		</div>
+		 <div id="navbar" class="navbar-collapse collapse ">
+			<ul class="nav navbar-nav navbar-right">
+			</ul>  
+		</div> 
+	  </div>
+	</nav>
+	
+	<!-- MENU -->
+	
+	<br/><br/><br/><br/>
+	
+	<!-- CONTENT -->
+	<div class="container-fluid">
+		
+		<div class="row" >
+			<div class="col-xs-12 col-md-12">
+				<div class="panel panel-default">
+				  <!-- Default panel contents -->
+				  <div class="panel-heading">Selecione uma das marcas abaixo</div>
+				  <div class="panel-body">
+				   	<div class="row">
+						<div class="col-xs-6 col-md-1" data-ng-repeat="brand in brands">
+						    <a href="javascript:void(0)" data-ng-click="search(brand)"  class="thumbnail">
+						      <img src="{{ brand.image }}" alt="{{ brand.name }}">
+						    </a>
+						  </div>
+					</div>
+				  </div>
+
+				</div>
+			</div>
+		</div>
+		
+		<h2 class="page-header">{{ search_brand_selected }}</h2>
+		
+		<div class="row" >
+			<div class="col-xs-12 col-md-12">
+				<div class="panel panel-primary">
+					  <!-- Default panel contents -->
+					  <div class="panel-heading">Gráficos</div>
+					  <div class="panel-body">
+						<div class="col-xs-12 col-md-6">
+							<div
+							bar-chart 
+							bar-data='bargraf'
+							bar-x='y'
+							bar-y='["a"]'
+							bar-labels='["Quantidade de Interações"]'>
+							</div> 
+						</div>		
+
+						<div class="col-xs-12 col-md-6">
+							<div
+								donut-chart
+								donut-data='donutgraf'
+								>
+								</div>
+						</div>
+					  </div>	
+				</div>	
+			
+			</div>	
+
+
+
+			<div class="col-xs-12 col-md-12">
+
+				<div class="panel panel-primary">
+				  <!-- Default panel contents -->
+				  <div class="panel-heading">Informações usadas para geração dos gráficos</div>
+				  <div class="panel-body">
+					<div class="table-responsive">
+			            <table class="table table-striped">
+			              <thead>
+			                <tr>
+			                  <th>Usuario</th>
+			                  <th>Interações</th>
+			                </tr>
+			              </thead>
+			              <tbody>
+			                <tr data-ng-repeat="int in interactions">
+			                  <td> <img src="{{ int.user.picture.medium }}" alt="{{ int.user.name.first  }}"> <br/> {{ int.user.name.title  }} {{ int.user.name.first  }}</td>
+			                  <td>
+			                  		<table class="table table-striped">
+			                  			<thead>
+							                <tr>
+							                  <th>Tipo</th>
+							                  <th>Texto</th>
+							                </tr>
+							            </thead>
+			                  			<tbody>		
+				                  			<tr data-ng-repeat="ind in int.interactions">
+				                  				<td>{{ ind.type }}</td>
+				                  				<td>{{ ind.text }}</td>
+				                  			</tr>
+			                  			</tbody>
+			                  		</table>
+			                  </td>
+			                </tr>
+			               </tbody>
+			            </table>   
+					</div>
+				  </div>
+				</div>
+			</div>			
+	</div>	
+
+
+
+
+ <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+
+<script src="assets/components/angular/angular.min.js"></script>
+
+<script type="text/javascript" src="assets/components/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript" src="assets/components/raphael/raphael.min.js"></script>
+<script type="text/javascript" src="assets/components/morris.js/morris.min.js"></script>
+<script type="text/javascript" src="assets/components/angular-morris-chart/src/angular-morris-chart.min.js"></script>
+
+
+<script src="assets/js/app.js"></script>
+<script src="assets/js/factorys/brandsFactory.js"></script>
+<script src="assets/js/factorys/interactionsFactory.js"></script>
+<script src="assets/js/factorys/usersFactory.js"></script>
+<script src="assets/js/services/userService.js"></script>
+<script src="assets/js/controllers/appCtrl.js"></script>
+
+</body>
+</html>
